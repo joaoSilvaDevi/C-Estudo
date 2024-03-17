@@ -1,4 +1,8 @@
-﻿void ExibirLogo(){
+﻿float listaGastos = 0;
+float listaRecebimentos = 0;
+int valorSleep = 1500;
+
+void ExibirLogo(){
 
   Console.WriteLine(@"
   
@@ -33,9 +37,9 @@ void ExebirOpcoesDoMenu(){
   switch (opcaoEscolhidaNumerica){
     case 1: RegistrarDespesa();
       break;
-    case 2: Console.WriteLine("Você escolher a opção " + opcaoEscolhidaNumerica);
+    case 2: RegistrarRecebimento();
       break;
-    case 3: Console.WriteLine("Você escolher a opção " + opcaoEscolhidaNumerica);
+    case 3: MostrarSaldo();
       break;
     case 0:Console.WriteLine("Encerrando!");
       break;
@@ -50,8 +54,32 @@ void RegistrarDespesa(){
   Console.Write("Digite o valor da despesa: ");
   string valorDespesa = Console.ReadLine()!;
   float valorDespesaInteiro = float.Parse(valorDespesa);
+  listaGastos += valorDespesaInteiro;
   Console.WriteLine($"A despesa no valor de R${valorDespesaInteiro} com sucesso!");
-  Thread.Sleep(2000);
+  Thread.Sleep(valorSleep);
+  Console.Clear();
+  ExebirOpcoesDoMenu();
+}
+
+void RegistrarRecebimento(){
+  Console.Clear();
+  Console.WriteLine("Registro de Recebimento!");
+  Console.Write("Digite o valor recebido: ");
+  string valorRecebimento = Console.ReadLine()!;
+  float valorRecebimentoInteiro = float.Parse(valorRecebimento);
+  listaRecebimentos += valorRecebimentoInteiro;
+  Console.WriteLine($"O recebimento no valor de R${valorRecebimentoInteiro} com sucesso!");
+  Thread.Sleep(valorSleep);
+  Console.Clear();
+  ExebirOpcoesDoMenu();
+}
+
+void MostrarSaldo(){
+  Console.Clear();
+  Console.WriteLine("Registro de Recebimento!");
+  float saldoAtual = listaRecebimentos - listaGastos;
+  Console.WriteLine($"Atualmente o saldo está no valor de R${saldoAtual}!");
+  Thread.Sleep(valorSleep);
   Console.Clear();
   ExebirOpcoesDoMenu();
 }
